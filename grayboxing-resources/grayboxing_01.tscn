@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn4shc45sctbc"]
+
+[ext_resource type="Material" uid="uid://11dhsxgowmbb" path="res://grayboxing-resources/grayboxDark.tres" id="1_vd1d6"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="testBox" type="CSGBox3D" parent="."]
+material_override = ExtResource("1_vd1d6")

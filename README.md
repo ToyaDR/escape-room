@@ -13,5 +13,5 @@ Camel Case
 - exampleAssetName.jpg
 
 ### Script Names
-Pascal Case
-- ExampleScriptName.cs
+Snake Case
+- example_script_name.gd

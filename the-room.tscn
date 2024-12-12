@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwe3sp6d7gxwi"]
+
+[ext_resource type="Material" uid="uid://11dhsxgowmbb" path="res://grayboxing-resources/grayboxDark.tres" id="1_0eoew"]
+[ext_resource type="PackedScene" uid="uid://wdqw3sl6br3p" path="res://player.tscn" id="2_dmf0p"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yu2vd"]
+
+[sub_resource type="Sky" id="Sky_51wn5"]
+sky_material = SubResource("ProceduralSkyMaterial_yu2vd")
+
+[sub_resource type="Environment" id="Environment_mk6m2"]
+background_mode = 2
+sky = SubResource("Sky_51wn5")
+
+[node name="the-room" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397453, 0.150072, 0.0585377)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mk6m2")
+
+[node name="player" parent="." instance=ExtResource("2_dmf0p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491711, 0.394538)
+
+[node name="Camera3D" type="Camera3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.262594, -0.0445198)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("1_0eoew")
+use_collision = true
+
+[node name="room1" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("1_0eoew")
+use_collision = true
+flip_faces = true
+size = Vector3(2, 2, 2)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -0.579651, 0.814865, 0, -0.814865, -0.579651, 0, 1.2447, 0.154317)
+light_energy = 6.867
+light_indirect_energy = 4.886
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -0.00614354, 0.999981, 0, -0.999981, -0.00614354, 0, 1.5531, -0.804741)
+light_energy = 6.867
+light_indirect_energy = 4.886
+
+[node name="hallway" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000305176, 0.810409, -2.41688)
+flip_faces = true
+size = Vector3(1.39343, 1.62695, 2.84521)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwe3sp6d7gxwi"]
+[gd_scene load_steps=12 format=3 uid="uid://dwe3sp6d7gxwi"]
 
 [ext_resource type="Material" uid="uid://11dhsxgowmbb" path="res://grayboxing-resources/grayboxDark.tres" id="1_0eoew"]
 [ext_resource type="PackedScene" uid="uid://wdqw3sl6br3p" path="res://player.tscn" id="2_dmf0p"]
+[ext_resource type="Script" path="res://door.gd" id="3_cjwqn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yu2vd"]
 
@@ -12,6 +13,29 @@ sky_material = SubResource("ProceduralSkyMaterial_yu2vd")
 background_mode = 2
 sky = SubResource("Sky_51wn5")
 
+[sub_resource type="BoxMesh" id="BoxMesh_3hg3r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdler"]
+albedo_color = Color(0.752941, 0.705882, 0.529412, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eih0q"]
+size = Vector3(0.873993, 1.38978, 0.052063)
+
+[sub_resource type="Animation" id="Animation_codft"]
+resource_name = "doorOpen"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0.982095, 0, 0.188384)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5bs8"]
+_data = {
+"doorToggle": SubResource("Animation_codft")
+}
+
 [node name="the-room" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397453, 0.150072, 0.0585377)
 
@@ -19,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397453, 0.150072, 0.058537
 environment = SubResource("Environment_mk6m2")
 
 [node name="player" parent="." instance=ExtResource("2_dmf0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491711, 0.394538)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491711, 3.24302)
 
 [node name="Camera3D" type="Camera3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.262594, -0.0445198)
@@ -28,24 +52,64 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.262594, -0.0445198)
 material_override = ExtResource("1_0eoew")
 use_collision = true
 
-[node name="room1" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material_override = ExtResource("1_0eoew")
-use_collision = true
-flip_faces = true
-size = Vector3(2, 2, 2)
-
 [node name="SpotLight3D2" type="SpotLight3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -0.579651, 0.814865, 0, -0.814865, -0.579651, 0, 1.2447, 0.154317)
+transform = Transform3D(1, 0, 0, 0, 0.031498, 0.999504, 0, -0.999504, 0.031498, 0, 3.89359, -2.43616)
 light_energy = 6.867
 light_indirect_energy = 4.886
 
 [node name="SpotLight3D" type="SpotLight3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -0.00614354, 0.999981, 0, -0.999981, -0.00614354, 0, 1.5531, -0.804741)
+transform = Transform3D(1, 0, 0, 0, -0.00614354, 0.999981, 0, -0.999981, -0.00614354, 0, 3.51717, -0.32016)
 light_energy = 6.867
 light_indirect_energy = 4.886
 
-[node name="hallway" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000305176, 0.810409, -2.41688)
+[node name="yourBedroom" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0905623, 1.00191, 1.50624)
+material_override = ExtResource("1_0eoew")
+use_collision = true
 flip_faces = true
-size = Vector3(1.39343, 1.62695, 2.84521)
+size = Vector3(6.10455, 2, 4.94531)
+
+[node name="theGarage" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50127, 1, -9.78642)
+material_override = ExtResource("1_0eoew")
+use_collision = true
+flip_faces = true
+size = Vector3(7.64212, 2, 6.40906)
+
+[node name="hallway" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000305176, 0.810409, -3.77015)
+flip_faces = true
+size = Vector3(1.39343, 1.62695, 5.45323)
+
+[node name="doorFrame" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016934, 0.693283, -1.03618)
+flip_faces = true
+size = Vector3(0.865325, 1.3927, 0.151169)
+
+[node name="doorFrame2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016934, 0.693283, -6.53163)
+flip_faces = true
+size = Vector3(0.865325, 1.3927, 0.151169)
+
+[node name="door" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.434161, 0, -0.969088)
+script = ExtResource("3_cjwqn")
+metadata/doorOpen = "doorToggle"
+
+[node name="doorShape" type="MeshInstance3D" parent="door"]
+transform = Transform3D(0.873015, 0, 0, 0, 1.38762, 0, 0, 0, 0.0514533, -0.436247, 0.697855, -0.0266077)
+mesh = SubResource("BoxMesh_3hg3r")
+surface_material_override/0 = SubResource("StandardMaterial3D_bdler")
+
+[node name="doorStatic" type="StaticBody3D" parent="door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.436247, -1.49012e-08, 0.0358588)
+collision_mask = 2
+
+[node name="doorCollision" type="CollisionShape3D" parent="door/doorStatic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000320435, 0.695438, -0.0619812)
+shape = SubResource("BoxShape3D_eih0q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="door"]
+libraries = {
+"": SubResource("AnimationLibrary_g5bs8")
+}

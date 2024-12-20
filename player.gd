@@ -20,9 +20,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_pressed("interact"):
-	# Get the thing we are interacting with
-	# Get the function of the thing we are interacting with
-	# Call that function
 		var interact = interact_raycast.get_collider()
 		if interact != null: 
 			interact.door_interact_emitter()

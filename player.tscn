@@ -7,10 +7,22 @@ radius = 0.268997
 height = 1.08844
 
 [node name="player" type="CharacterBody3D"]
+collision_mask = 2
 script = ExtResource("1_xnrl1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_p6qog")
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="player-vision" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.290594, -0.340325)
+
+[node name="vertical-pivot" type="Node3D" parent="player-vision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0439909, 0.247945)
+
+[node name="Camera3D" type="Camera3D" parent="player-vision/vertical-pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0878293, 0.284568)
+
+[node name="RayCast3D" type="RayCast3D" parent="player-vision/vertical-pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.306534, -0.0671924)
 target_position = Vector3(0, 0, -1.5)
+collision_mask = 2

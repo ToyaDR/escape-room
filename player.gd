@@ -8,12 +8,16 @@ const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var interact_raycast
 
+var vertical_pivot
+
 var look_speed = 0.001
 var rotation_x = 0.0
 var rotation_y = 0.0
 
 func _ready() -> void:
-	interact_raycast = get_child(1)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	interact_raycast = get_node('player-vision/vertical-pivot/RayCast3D')
+	vertical_pivot = get_node('player-vision/vertical-pivot')
 
 func _input(event):
 	if (event is InputEventMouseMotion):
@@ -28,7 +32,7 @@ func _input(event):
 		var clamped_y = clamp(rotation_y, deg_to_rad(-90), deg_to_rad(90))
 
 		rotate_object_local(Vector3.UP, rotation_x * -1)
-		rotate_object_local(Vector3.LEFT, clamped_y)
+		vertical_pivot.rotate_object_local(Vector3.LEFT, clamped_y)
 
 func _physics_process(delta):
 	# Add the gravity.

@@ -3,10 +3,14 @@
 [ext_resource type="Script" path="res://player.gd" id="1_xnrl1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p6qog"]
-height = 1.44203
+radius = 0.268997
+height = 1.08844
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_xnrl1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_p6qog")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -1.5)

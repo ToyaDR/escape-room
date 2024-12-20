@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwe3sp6d7gxwi"]
+[gd_scene load_steps=7 format=3 uid="uid://dwe3sp6d7gxwi"]
 
 [ext_resource type="Material" uid="uid://11dhsxgowmbb" path="res://grayboxing-resources/grayboxDark.tres" id="1_0eoew"]
 [ext_resource type="PackedScene" uid="uid://wdqw3sl6br3p" path="res://player.tscn" id="2_dmf0p"]
+[ext_resource type="PackedScene" uid="uid://bj3f45ufuf8e8" path="res://environment-prefabs/door.tscn" id="3_dgdyn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yu2vd"]
 
@@ -19,7 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397453, 0.150072, 0.058537
 environment = SubResource("Environment_mk6m2")
 
 [node name="player" parent="." instance=ExtResource("2_dmf0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491711, 0.394538)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491711, 3.24302)
 
 [node name="Camera3D" type="Camera3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.262594, -0.0445198)
@@ -28,24 +29,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.262594, -0.0445198)
 material_override = ExtResource("1_0eoew")
 use_collision = true
 
-[node name="room1" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material_override = ExtResource("1_0eoew")
-use_collision = true
-flip_faces = true
-size = Vector3(2, 2, 2)
-
 [node name="SpotLight3D2" type="SpotLight3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -0.579651, 0.814865, 0, -0.814865, -0.579651, 0, 1.2447, 0.154317)
+transform = Transform3D(1, 0, 0, 0, 0.031498, 0.999504, 0, -0.999504, 0.031498, 0, 3.89359, -2.43616)
 light_energy = 6.867
 light_indirect_energy = 4.886
 
 [node name="SpotLight3D" type="SpotLight3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -0.00614354, 0.999981, 0, -0.999981, -0.00614354, 0, 1.5531, -0.804741)
+transform = Transform3D(1, 0, 0, 0, -0.00614354, 0.999981, 0, -0.999981, -0.00614354, 0, 3.51717, -0.32016)
 light_energy = 6.867
 light_indirect_energy = 4.886
 
-[node name="hallway" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000305176, 0.810409, -2.41688)
+[node name="yourBedroom" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0905623, 1.00191, 1.50624)
+material_override = ExtResource("1_0eoew")
+use_collision = true
 flip_faces = true
-size = Vector3(1.39343, 1.62695, 2.84521)
+size = Vector3(6.10455, 2, 4.94531)
+
+[node name="theGarage" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50127, 1, -9.78642)
+material_override = ExtResource("1_0eoew")
+use_collision = true
+flip_faces = true
+size = Vector3(7.64212, 2, 6.40906)
+
+[node name="hallway" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000305176, 0.810409, -3.77015)
+flip_faces = true
+size = Vector3(1.39343, 1.62695, 5.45323)
+
+[node name="doorFrame" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016934, 0.693283, -1.03618)
+flip_faces = true
+size = Vector3(0.865325, 1.3927, 0.151169)
+
+[node name="doorFrame2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016934, 0.693283, -6.53163)
+flip_faces = true
+size = Vector3(0.865325, 1.3927, 0.151169)
+
+[node name="door" parent="." instance=ExtResource("3_dgdyn")]

@@ -1,0 +1,16 @@
+extends StaticBody3D
+
+signal door_interact
+
+func door_interact_emitter() -> void:
+	print("door hit")
+	door_interact.emit()
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass

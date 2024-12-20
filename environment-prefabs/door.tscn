@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://bj3f45ufuf8e8"]
+
+[ext_resource type="Script" path="res://door.gd" id="1_yq5vt"]
+[ext_resource type="Script" path="res://doorInteract.gd" id="2_n0ijb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3hg3r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdler"]
+albedo_color = Color(0.752941, 0.705882, 0.529412, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eih0q"]
+size = Vector3(0.873993, 1.38978, 0.052063)
+
+[sub_resource type="Animation" id="Animation_codft"]
+resource_name = "doorOpen"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0.982095, 0, 0.188384)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5bs8"]
+_data = {
+"doorToggle": SubResource("Animation_codft")
+}
+
+[node name="door" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.434161, 0, -0.969088)
+script = ExtResource("1_yq5vt")
+metadata/doorOpen = "doorToggle"
+
+[node name="doorShape" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.873015, 0, 0, 0, 1.38762, 0, 0, 0, 0.0514533, -0.436247, 0.697855, -0.0266077)
+mesh = SubResource("BoxMesh_3hg3r")
+surface_material_override/0 = SubResource("StandardMaterial3D_bdler")
+
+[node name="doorStatic" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.436247, -1.49012e-08, 0.0358588)
+collision_mask = 2
+script = ExtResource("2_n0ijb")
+
+[node name="doorCollision" type="CollisionShape3D" parent="doorStatic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000320435, 0.695438, -0.0619812)
+shape = SubResource("BoxShape3D_eih0q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g5bs8")
+}
+
+[connection signal="door_interact" from="doorStatic" to="." method="_door_interact_receiver"]

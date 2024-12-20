@@ -21,8 +21,10 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_pressed("interact"):
 		var interact = interact_raycast.get_collider()
-		if interact != null: 
-			interact.door_interact_emitter()
+		if interact != null:
+			if interact.has_method("door_interact_emitter"):
+				interact.door_interact_emitter()
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

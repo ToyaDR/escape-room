@@ -1,10 +1,10 @@
-extends Node3D
+extends StaticBody3D
 
-func _door_interact_receiver() -> void:
-	print("door interact reciever")
-	var animation_name = get_meta("doorOpen")
-	var animation_player = get_node("AnimationPlayer")
-	animation_player.play(animation_name)
+signal door_interact
+
+func door_interact_emitter() -> void:
+	print("door hit")
+	door_interact.emit()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

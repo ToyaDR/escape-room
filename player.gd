@@ -6,7 +6,10 @@ const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var interact_raycast
 
+func _ready() -> void:
+	interact_raycast = get_child(1)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -16,7 +19,13 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	if Input.is_action_just_pressed("interact"):
+	# Get the thing we are interacting with
+	# Get the function of the thing we are interacting with
+	# Call that function
+		var interact = interact_raycast.get_collider()
+		if interact != null: 
+			interact.door_interact_emitter()
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

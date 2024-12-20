@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwe3sp6d7gxwi"]
+[gd_scene load_steps=13 format=3 uid="uid://dwe3sp6d7gxwi"]
 
 [ext_resource type="Material" uid="uid://11dhsxgowmbb" path="res://grayboxing-resources/grayboxDark.tres" id="1_0eoew"]
 [ext_resource type="PackedScene" uid="uid://wdqw3sl6br3p" path="res://player.tscn" id="2_dmf0p"]
 [ext_resource type="Script" path="res://door.gd" id="3_cjwqn"]
+[ext_resource type="Script" path="res://doorInteract.gd" id="4_ikks1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yu2vd"]
 
@@ -104,6 +105,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bdler")
 [node name="doorStatic" type="StaticBody3D" parent="door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.436247, -1.49012e-08, 0.0358588)
 collision_mask = 2
+script = ExtResource("4_ikks1")
 
 [node name="doorCollision" type="CollisionShape3D" parent="door/doorStatic"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000320435, 0.695438, -0.0619812)
@@ -113,3 +115,5 @@ shape = SubResource("BoxShape3D_eih0q")
 libraries = {
 "": SubResource("AnimationLibrary_g5bs8")
 }
+
+[connection signal="door_interact" from="door/doorStatic" to="door" method="_door_interact_receiver"]

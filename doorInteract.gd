@@ -2,7 +2,7 @@ extends StaticBody3D
 
 signal door_interact
 
-func door_interact_emitter() -> void:
+func interact() -> void:
 	print("door hit")
 	door_interact.emit()
 

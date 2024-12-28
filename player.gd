@@ -45,8 +45,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("interact"):
 		var interact = interact_raycast.get_collider()
 		if interact != null:
-			if interact.has_method("door_interact_emitter"):
-				interact.door_interact_emitter()
+			if interact.has_method("interact"):
+				interact.interact()
 	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

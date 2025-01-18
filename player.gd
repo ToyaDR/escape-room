@@ -14,10 +14,14 @@ var look_speed = 0.001
 var rotation_x = 0.0
 var rotation_y = 0.0
 
+var carried_object
+var hand
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	interact_raycast = get_node('player-vision/vertical-pivot/RayCast3D')
 	vertical_pivot = get_node('player-vision/vertical-pivot')
+	hand = get_node('player-vision/vertical-pivot/Marker3D')
 
 func _input(event):
 	if (event is InputEventMouseMotion):
@@ -47,6 +51,11 @@ func _physics_process(delta):
 		if interact != null:
 			if interact.has_method("interact"):
 				interact.interact()
+			if (interact is RigidBody3D):
+				if (carried_object == null):
+					carried_object = interact
+				else:
+					carried_object = null
 	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -58,3 +67,5 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	if (carried_object):
+		carried_object.set_linear_velocity(SPEED * (hand.global_transform.origin - carried_object.global_transform.origin))

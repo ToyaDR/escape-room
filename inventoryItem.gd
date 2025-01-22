@@ -9,7 +9,7 @@ var inventory = {
 var item_name
 var item_ui_node: Sprite2D
 
-var free_after_interact = true
+var update_inventory = true
 
 func interact() -> void:
 	print(item_name + " hit")

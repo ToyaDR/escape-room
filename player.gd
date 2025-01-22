@@ -66,12 +66,14 @@ func _physics_process(delta):
 			just_interacted = true
 			if interact.has_method("interact"):
 				interact.interact()
+				if (interact.update_inventory):
+					inventory[interact.item_name] = true
 			elif (interact is RigidBody3D):
 				if (carried_object == null):
 					carried_object = interact
 				else:
 					carried_object = null
-
+		
 		# the object sometimes lags behind the cursor and this makes it so the 
 		# raycast is not actually colliding with a rigid body. So regardless of
 		# collision or not, we should let go of any object being carried

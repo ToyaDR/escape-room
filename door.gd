@@ -13,5 +13,5 @@ func _door_interact_receiver() -> void:
 		return
 	animation_player.play(animation_name)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass

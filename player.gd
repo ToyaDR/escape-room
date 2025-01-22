@@ -17,11 +17,22 @@ var rotation_y = 0.0
 var carried_object
 var hand
 
+var default_inventory = {
+  "game_console": false,
+  "calculator": false,
+  "headphones": false,
+  "paint": false,
+  "how_to_draw_books": false,
+  "old_clothes": false,
+}
+var inventory
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	interact_raycast = get_node('player-vision/vertical-pivot/RayCast3D')
 	vertical_pivot = get_node('player-vision/vertical-pivot')
 	hand = get_node('player-vision/vertical-pivot/Marker3D')
+	inventory = default_inventory
 
 func _input(event):
 	if (event is InputEventMouseMotion):
@@ -46,16 +57,26 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
 	if Input.is_action_just_pressed("interact"):
+		var just_interacted = false
+
 		var interact = interact_raycast.get_collider()
 		if interact != null:
+			just_interacted = true
 			if interact.has_method("interact"):
 				interact.interact()
-			if (interact is RigidBody3D):
+			elif (interact is RigidBody3D):
 				if (carried_object == null):
 					carried_object = interact
 				else:
 					carried_object = null
+
+		# the object sometimes lags behind the cursor and this makes it so the 
+		# raycast is not actually colliding with a rigid body. So regardless of
+		# collision or not, we should let go of any object being carried
+		if (carried_object != null && !just_interacted):
+			carried_object = null
 	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

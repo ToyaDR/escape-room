@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://wdqw3sl6br3p"]
+[gd_scene load_steps=4 format=3 uid="uid://wdqw3sl6br3p"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_xnrl1"]
+[ext_resource type="Texture2D" uid="uid://b25tvncvgad75" path="res://assets/inventory/hot-pink-ti-84-programmer-art.jpg" id="2_0qdy3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p6qog"]
 radius = 0.268997
@@ -29,3 +30,13 @@ collision_mask = 6
 
 [node name="Marker3D" type="Marker3D" parent="player-vision/vertical-pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.306534, -1.34658)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="inventory" type="Node2D" parent="CanvasLayer"]
+
+[node name="calculator" type="Sprite2D" parent="CanvasLayer/inventory"]
+visible = false
+position = Vector2(1763, 271)
+scale = Vector2(0.0588542, 0.0588542)
+texture = ExtResource("2_0qdy3")

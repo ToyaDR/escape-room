@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwe3sp6d7gxwi"]
+[gd_scene load_steps=11 format=3 uid="uid://dwe3sp6d7gxwi"]
 
 [ext_resource type="Material" uid="uid://11dhsxgowmbb" path="res://grayboxing-resources/grayboxDark.tres" id="1_0eoew"]
+[ext_resource type="PackedScene" uid="uid://bcim4rwvkrnd4" path="res://medium_box.tscn" id="1_mv6t0"]
+[ext_resource type="PackedScene" uid="uid://dg4fvya56rjmk" path="res://large_box.tscn" id="2_6m5px"]
 [ext_resource type="PackedScene" uid="uid://wdqw3sl6br3p" path="res://player.tscn" id="2_dmf0p"]
 [ext_resource type="PackedScene" uid="uid://bj3f45ufuf8e8" path="res://environment-prefabs/door.tscn" id="3_dgdyn"]
-[ext_resource type="Script" path="res://inventoryItem.gd" id="4_hpxjq"]
+[ext_resource type="PackedScene" uid="uid://jrv2whc5rrhs" path="res://small_box.tscn" id="3_h4dg6"]
+[ext_resource type="Script" path="res://box_loader.gd" id="4_ttee4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yu2vd"]
 
@@ -14,22 +17,40 @@ sky_material = SubResource("ProceduralSkyMaterial_yu2vd")
 background_mode = 2
 sky = SubResource("Sky_51wn5")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2v4uc"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_enh6d"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_6po1q"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lfhko"]
-
 [node name="the-room" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397453, 0.150072, 0.0585377)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mk6m2")
 
+[node name="mediumBox" parent="WorldEnvironment" instance=ExtResource("1_mv6t0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.288339, 1.46871, 2.08165e-12)
+
+[node name="largeBox" parent="WorldEnvironment" instance=ExtResource("2_6m5px")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.315461, 0.668383, -0.252987)
+
+[node name="smallBox" parent="WorldEnvironment" instance=ExtResource("3_h4dg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.834643, 1.66764, 2.08165e-12)
+
 [node name="player" parent="." instance=ExtResource("2_dmf0p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491711, 3.24302)
+
+[node name="cursor" type="TextEdit" parent="player/CanvasLayer" index="1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "+"
+metadata/_edit_use_anchors_ = true
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 material_override = ExtResource("1_0eoew")
@@ -77,35 +98,9 @@ size = Vector3(0.865325, 1.3927, 0.151169)
 
 [node name="door" parent="." instance=ExtResource("3_dgdyn")]
 
-[node name="moveableBox" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260086, 0)
-collision_layer = 4
-collision_mask = 6
-mass = 0.09
-
-[node name="boxCollision" type="CollisionShape3D" parent="moveableBox"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-shape = SubResource("BoxShape3D_2v4uc")
-
-[node name="boxShape" type="MeshInstance3D" parent="moveableBox"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("BoxMesh_enh6d")
-skeleton = NodePath("")
-
-[node name="inventoryBox" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675361, 0.208454, 0)
-collision_layer = 4
-collision_mask = 7
-mass = 0.01
-script = ExtResource("4_hpxjq")
-metadata/name = "calculator"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="inventoryBox"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-mesh = SubResource("BoxMesh_6po1q")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="inventoryBox"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-shape = SubResource("BoxShape3D_lfhko")
+[node name="box_loader" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88304, 1.66914, 0.909717)
+visible = false
+script = ExtResource("4_ttee4")
 
 [editable path="player"]

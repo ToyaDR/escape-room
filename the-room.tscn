@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwe3sp6d7gxwi"]
+[gd_scene load_steps=14 format=3 uid="uid://dwe3sp6d7gxwi"]
 
 [ext_resource type="Material" uid="uid://11dhsxgowmbb" path="res://grayboxing-resources/grayboxDark.tres" id="1_0eoew"]
 [ext_resource type="PackedScene" uid="uid://wdqw3sl6br3p" path="res://player.tscn" id="2_dmf0p"]
-[ext_resource type="PackedScene" uid="uid://bj3f45ufuf8e8" path="res://environment-prefabs/door.tscn" id="3_dgdyn"]
 [ext_resource type="Script" path="res://inventoryItem.gd" id="4_hpxjq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yu2vd"]
@@ -17,6 +16,14 @@ sky = SubResource("Sky_51wn5")
 [sub_resource type="BoxShape3D" id="BoxShape3D_2v4uc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_enh6d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nh0t5"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7nh1n"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6w6dn"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6po1q"]
 
@@ -75,13 +82,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016934, 0.693283, -6.53163
 flip_faces = true
 size = Vector3(0.865325, 1.3927, 0.151169)
 
-[node name="door" parent="." instance=ExtResource("3_dgdyn")]
-
 [node name="moveableBox" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260086, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262406, 0.260086, -0.420328)
 collision_layer = 4
 collision_mask = 6
-mass = 0.09
+mass = 100.0
 
 [node name="boxCollision" type="CollisionShape3D" parent="moveableBox"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
@@ -91,6 +96,68 @@ shape = SubResource("BoxShape3D_2v4uc")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("BoxMesh_enh6d")
 skeleton = NodePath("")
+
+[node name="moveableBox2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260086, -0.425274)
+collision_layer = 4
+collision_mask = 6
+mass = 1000.0
+
+[node name="boxCollision" type="CollisionShape3D" parent="moveableBox2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+shape = SubResource("BoxShape3D_2v4uc")
+
+[node name="boxShape" type="MeshInstance3D" parent="moveableBox2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("BoxMesh_enh6d")
+skeleton = NodePath("")
+
+[node name="moveableBox3" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307577, 0.260086, -0.412909)
+collision_layer = 4
+collision_mask = 6
+mass = 100.0
+
+[node name="boxCollision" type="CollisionShape3D" parent="moveableBox3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+shape = SubResource("BoxShape3D_2v4uc")
+
+[node name="boxShape" type="MeshInstance3D" parent="moveableBox3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("BoxMesh_enh6d")
+skeleton = NodePath("")
+
+[node name="doorWithHinge" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675361, 0.208454, 0)
+
+[node name="door" type="RigidBody3D" parent="doorWithHinge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.330529, 0)
+collision_layer = 7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="doorWithHinge/door"]
+transform = Transform3D(0.885253, 0, 0, 0, 1.38493, 0, 0, 0, 0.117878, -0.668833, 0.155763, -0.90552)
+mesh = SubResource("BoxMesh_nh0t5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doorWithHinge/door"]
+transform = Transform3D(0.885253, 0, 0, 0, 1.38493, 0, 0, 0, 0.117878, -0.668833, 0.155763, -0.90552)
+shape = SubResource("ConvexPolygonShape3D_7nh1n")
+
+[node name="doorFrame" type="StaticBody3D" parent="doorWithHinge"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="doorWithHinge/doorFrame"]
+transform = Transform3D(0.226427, 0, 0, 0, 1.38493, 0, 0, 0, 0.117878, -1.22256, 0.485864, -0.90552)
+mesh = SubResource("BoxMesh_nh0t5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doorWithHinge/doorFrame"]
+transform = Transform3D(0.226427, 0, 0, 0, 1.38493, 0, 0, 0, 0.117878, -1.22256, 0.485864, -0.90552)
+shape = SubResource("ConvexPolygonShape3D_6w6dn")
+
+[node name="HingeJoint3D" type="HingeJoint3D" parent="doorWithHinge"]
+transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.10159, 0.677284, -0.832351)
+node_a = NodePath("../door")
+node_b = NodePath("../doorFrame")
+angular_limit/enable = true
+angular_limit/lower = 1.74393e-16
 
 [node name="inventoryBox" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675361, 0.208454, 0)

@@ -1,8 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwe3sp6d7gxwi"]
+[gd_scene load_steps=19 format=3 uid="uid://dwe3sp6d7gxwi"]
 
 [ext_resource type="Material" uid="uid://11dhsxgowmbb" path="res://grayboxing-resources/grayboxDark.tres" id="1_0eoew"]
 [ext_resource type="PackedScene" uid="uid://wdqw3sl6br3p" path="res://player.tscn" id="2_dmf0p"]
+[ext_resource type="PackedScene" uid="uid://6drkb0mby80g" path="res://bedroomblocking/bedroom_04_blocking.fbx" id="4_7s2ml"]
 [ext_resource type="Script" path="res://inventoryItem.gd" id="4_hpxjq"]
+[ext_resource type="PackedScene" uid="uid://0y2vmkdcfno5" path="res://bedroom/bedroom_02.fbx" id="5_ssw3s"]
+[ext_resource type="Material" uid="uid://owjcyp3sah0q" path="res://bedroom/bedroom_textures/bedroomwalls.tres" id="6_78ejd"]
+[ext_resource type="Material" uid="uid://cu6nvwmlgfvxf" path="res://bedroom/bedroom_textures/90scarpet.tres" id="7_itt0k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yu2vd"]
 
@@ -29,6 +33,10 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfhko"]
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_v7elw"]
+data = PackedVector3Array(0.02, 0.01, 0.0106, -0.02, 0.01, 0.0106, -0.02, -0.0325, 0.0106, -0.02, -0.0325, 0.0106, 0.02, -0.0325, 0.0106, 0.02, 0.01, 0.0106, -0.02, -0.0325, 0.0106, 0.02, -0.0325, -0.0117, 0.02, -0.0325, 0.0106, -0.02, -0.0325, 0.0106, -0.02, -0.0325, -0.0117, 0.02, -0.0325, -0.0117, 0.02, -0.0325, 0.0106, 0.02, 0.01, -0.0117, 0.02, 0.01, 0.0106, 0.02, -0.0325, 0.0106, 0.02, -0.0325, -0.0117, 0.02, 0.01, -0.0117, 0.02, 0.01, 0.0106, -0.02, 0.01, -0.0117, -0.02, 0.01, 0.0106, 0.02, 0.01, 0.0106, 0.02, 0.01, -0.0117, -0.02, 0.01, -0.0117, -0.02, 0.01, 0.0106, -0.02, -0.0325, -0.0117, -0.02, -0.0325, 0.0106, -0.02, 0.01, 0.0106, -0.02, 0.01, -0.0117, -0.02, -0.0325, -0.0117, -0.02, 0.01, -0.0117, 0.02, -0.0325, -0.0117, -0.02, -0.0325, -0.0117, 0.02, 0.01, -0.0117, 0.02, -0.0325, -0.0117, -0.02, 0.01, -0.0117)
+backface_collision = true
+
 [node name="the-room" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397453, 0.150072, 0.0585377)
 
@@ -36,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397453, 0.150072, 0.058537
 environment = SubResource("Environment_mk6m2")
 
 [node name="player" parent="." instance=ExtResource("2_dmf0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491711, 3.24302)
+transform = Transform3D(0.396635, 0, -0.917976, 0, 1, 0, 0.917976, 0, 0.396635, -1.48867, 0.612145, 2.57519)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 material_override = ExtResource("1_0eoew")
@@ -49,16 +57,17 @@ light_energy = 6.867
 light_indirect_energy = 4.886
 
 [node name="SpotLight3D" type="SpotLight3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -0.00614354, 0.999981, 0, -0.999981, -0.00614354, 0, 3.51717, -0.32016)
+transform = Transform3D(1, 0, 0, 0, -0.00614354, 0.999981, 0, -0.999981, -0.00614354, -0.782057, 3.51717, 0.98641)
 light_energy = 6.867
 light_indirect_energy = 4.886
 
 [node name="yourBedroom" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0905623, 1.00191, 1.50624)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.683476, 1.11202, 1.16164)
+visible = false
 material_override = ExtResource("1_0eoew")
 use_collision = true
 flip_faces = true
-size = Vector3(6.10455, 2, 4.94531)
+size = Vector3(4.00611, 2.22021, 4.2561)
 
 [node name="theGarage" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50127, 1, -9.78642)
@@ -81,6 +90,10 @@ size = Vector3(0.865325, 1.3927, 0.151169)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016934, 0.693283, -6.53163)
 flip_faces = true
 size = Vector3(0.865325, 1.3927, 0.151169)
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.905502, 0.424342, 0, -0.424342, 0.905502, -0.900129, 1.54089, 4.9503)
+spot_angle = 13.31
 
 [node name="moveableBox" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262406, 0.260086, -0.420328)
@@ -175,4 +188,25 @@ mesh = SubResource("BoxMesh_6po1q")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 shape = SubResource("BoxShape3D_lfhko")
 
+[node name="Root Scene" parent="." instance=ExtResource("4_7s2ml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.395595, -0.14765, 0.0172568)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -0.735245, 1.15988, 0.0922659)
+collision_layer = 2
+collision_mask = 13
+
+[node name="Root Scene2" parent="StaticBody3D" instance=ExtResource("5_ssw3s")]
+transform = Transform3D(0.01, 0, 0, 0, -1.19209e-09, -0.01, 0, 0.01, -1.19209e-09, 0.010844, 0.000982578, -0.0130995)
+
+[node name="room" parent="StaticBody3D/Root Scene2/RootNode" index="0"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -1.0844, 1.30995, 0.0982576)
+surface_material_override/0 = ExtResource("6_78ejd")
+surface_material_override/1 = ExtResource("7_itt0k")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.31323e-10, 4.65661e-10, 0)
+shape = SubResource("ConcavePolygonShape3D_v7elw")
+
 [editable path="player"]
+[editable path="StaticBody3D/Root Scene2"]

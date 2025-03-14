@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal start_carrying_object
+signal stop_carrying_object
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -71,13 +73,16 @@ func _physics_process(delta):
 			elif (interact is RigidBody3D):
 				if (carried_object == null):
 					carried_object = interact
+					start_carrying_object.emit()
 				else:
+					stop_carrying_object.emit()
 					carried_object = null
 		
 		# the object sometimes lags behind the cursor and this makes it so the 
 		# raycast is not actually colliding with a rigid body. So regardless of
 		# collision or not, we should let go of any object being carried
 		if (carried_object != null && !just_interacted):
+			stop_carrying_object.emit()
 			carried_object = null
 	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

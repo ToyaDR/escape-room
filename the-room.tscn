@@ -100,7 +100,7 @@ spot_angle = 13.31
 [node name="moveableBox" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262406, 0.260086, -0.420328)
 collision_layer = 4
-collision_mask = 6
+collision_mask = 22
 script = ExtResource("3_p3nnh")
 
 [node name="boxCollision" type="CollisionShape3D" parent="moveableBox"]
@@ -115,7 +115,7 @@ skeleton = NodePath("")
 [node name="moveableBox2" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260086, -0.425274)
 collision_layer = 4
-collision_mask = 6
+collision_mask = 22
 script = ExtResource("3_p3nnh")
 
 [node name="boxCollision" type="CollisionShape3D" parent="moveableBox2"]
@@ -130,7 +130,7 @@ skeleton = NodePath("")
 [node name="moveableBox3" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307577, 0.260086, -0.412909)
 collision_layer = 4
-collision_mask = 6
+collision_mask = 22
 script = ExtResource("3_p3nnh")
 
 [node name="boxCollision" type="CollisionShape3D" parent="moveableBox3"]
@@ -213,6 +213,9 @@ shape = SubResource("ConcavePolygonShape3D_v7elw")
 
 [node name="openableDoor" parent="." instance=ExtResource("8_2m8op")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00336713, 0.208454, 1.31291)
+
+[connection signal="start_carrying_object" from="player" to="openableDoor" method="_on_player_carrying_object"]
+[connection signal="stop_carrying_object" from="player" to="openableDoor" method="_on_player_not_carrying_object"]
 
 [editable path="player"]
 [editable path="StaticBody3D/Root Scene2"]

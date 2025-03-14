@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bchhin4j65b0g"]
+[gd_scene load_steps=6 format=3 uid="uid://bchhin4j65b0g"]
 
+[ext_resource type="Script" path="res://openable_door.gd" id="1_plbo2"]
 [ext_resource type="Script" path="res://doorInteract.gd" id="1_suetv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nh0t5"]
@@ -12,6 +13,7 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 
 [node name="openableDoor" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675361, 0.208454, 0)
+script = ExtResource("1_plbo2")
 
 [node name="door" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.330529, 0)

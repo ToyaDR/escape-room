@@ -1,12 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://dwe3sp6d7gxwi"]
+[gd_scene load_steps=21 format=3 uid="uid://dwe3sp6d7gxwi"]
 
 [ext_resource type="Material" uid="uid://11dhsxgowmbb" path="res://grayboxing-resources/grayboxDark.tres" id="1_0eoew"]
 [ext_resource type="PackedScene" uid="uid://wdqw3sl6br3p" path="res://player.tscn" id="2_dmf0p"]
+[ext_resource type="Script" path="res://moveableBox.gd" id="3_p3nnh"]
 [ext_resource type="PackedScene" uid="uid://6drkb0mby80g" path="res://bedroomblocking/bedroom_04_blocking.fbx" id="4_7s2ml"]
 [ext_resource type="Script" path="res://inventoryItem.gd" id="4_hpxjq"]
 [ext_resource type="PackedScene" uid="uid://0y2vmkdcfno5" path="res://bedroom/bedroom_02.fbx" id="5_ssw3s"]
 [ext_resource type="Material" uid="uid://owjcyp3sah0q" path="res://bedroom/bedroom_textures/bedroomwalls.tres" id="6_78ejd"]
 [ext_resource type="Material" uid="uid://cu6nvwmlgfvxf" path="res://bedroom/bedroom_textures/90scarpet.tres" id="7_itt0k"]
+[ext_resource type="PackedScene" uid="uid://bchhin4j65b0g" path="res://openable_door.tscn" id="8_2m8op"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yu2vd"]
 
@@ -98,8 +100,8 @@ spot_angle = 13.31
 [node name="moveableBox" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262406, 0.260086, -0.420328)
 collision_layer = 4
-collision_mask = 6
-mass = 100.0
+collision_mask = 22
+script = ExtResource("3_p3nnh")
 
 [node name="boxCollision" type="CollisionShape3D" parent="moveableBox"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
@@ -113,8 +115,8 @@ skeleton = NodePath("")
 [node name="moveableBox2" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260086, -0.425274)
 collision_layer = 4
-collision_mask = 6
-mass = 1000.0
+collision_mask = 22
+script = ExtResource("3_p3nnh")
 
 [node name="boxCollision" type="CollisionShape3D" parent="moveableBox2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
@@ -128,8 +130,8 @@ skeleton = NodePath("")
 [node name="moveableBox3" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307577, 0.260086, -0.412909)
 collision_layer = 4
-collision_mask = 6
-mass = 100.0
+collision_mask = 22
+script = ExtResource("3_p3nnh")
 
 [node name="boxCollision" type="CollisionShape3D" parent="moveableBox3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
@@ -142,6 +144,7 @@ skeleton = NodePath("")
 
 [node name="doorWithHinge" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675361, 0.208454, 0)
+visible = false
 
 [node name="door" type="RigidBody3D" parent="doorWithHinge"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.330529, 0)
@@ -207,6 +210,12 @@ surface_material_override/1 = ExtResource("7_itt0k")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.31323e-10, 4.65661e-10, 0)
 shape = SubResource("ConcavePolygonShape3D_v7elw")
+
+[node name="openableDoor" parent="." instance=ExtResource("8_2m8op")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00336713, 0.208454, 1.31291)
+
+[connection signal="start_carrying_object" from="player" to="openableDoor" method="_on_player_carrying_object"]
+[connection signal="stop_carrying_object" from="player" to="openableDoor" method="_on_player_not_carrying_object"]
 
 [editable path="player"]
 [editable path="StaticBody3D/Root Scene2"]

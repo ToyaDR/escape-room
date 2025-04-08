@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://fgynhpso0jgl"]
+
+[ext_resource type="Material" uid="uid://be1qiwvxq6b5c" path="res://assets/furniture/textures/wood01/wood01.tres" id="1_jrfkv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0mht6"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_0mht6")
+surface_material_override/0 = ExtResource("1_jrfkv")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwe3sp6d7gxwi"]
+[gd_scene load_steps=28 format=3 uid="uid://dwe3sp6d7gxwi"]
 
 [ext_resource type="Material" uid="uid://11dhsxgowmbb" path="res://grayboxing-resources/grayboxDark.tres" id="1_0eoew"]
 [ext_resource type="PackedScene" uid="uid://wdqw3sl6br3p" path="res://player.tscn" id="2_dmf0p"]
@@ -9,6 +9,13 @@
 [ext_resource type="Material" uid="uid://owjcyp3sah0q" path="res://bedroom/bedroom_textures/bedroomwalls.tres" id="6_78ejd"]
 [ext_resource type="Material" uid="uid://cu6nvwmlgfvxf" path="res://bedroom/bedroom_textures/90scarpet.tres" id="7_itt0k"]
 [ext_resource type="PackedScene" uid="uid://bchhin4j65b0g" path="res://openable_door.tscn" id="8_2m8op"]
+[ext_resource type="PackedScene" uid="uid://x6xi0vu2k421" path="res://assets/furniture/objects/shelf01.glb" id="10_63o45"]
+[ext_resource type="Material" uid="uid://be1qiwvxq6b5c" path="res://assets/furniture/textures/wood01/wood01.tres" id="11_bi7lq"]
+[ext_resource type="PackedScene" uid="uid://eswk7oolmu4k" path="res://assets/furniture/objects/shelf02.glb" id="12_pauwt"]
+[ext_resource type="PackedScene" uid="uid://ci6pdvehsbci1" path="res://assets/furniture/objects/drawers.glb" id="13_g6gi2"]
+[ext_resource type="PackedScene" uid="uid://cthhhlqexnmln" path="res://assets/furniture/objects/tv01.glb" id="14_dqrqy"]
+[ext_resource type="PackedScene" uid="uid://cuyagc2fs1it8" path="res://assets/furniture/objects/tvconsole.glb" id="15_jbvec"]
+[ext_resource type="PackedScene" uid="uid://uil6hobged73" path="res://assets/furniture/objects/ceilingFan.glb" id="16_d0yk6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yu2vd"]
 
@@ -49,19 +56,10 @@ environment = SubResource("Environment_mk6m2")
 transform = Transform3D(0.396635, 0, -0.917976, 0, 1, 0, 0.917976, 0, 0.396635, -1.48867, 0.612145, 2.57519)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+visible = false
 material_override = ExtResource("1_0eoew")
 use_collision = true
 collision_layer = 2
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 0.031498, 0.999504, 0, -0.999504, 0.031498, 0, 3.89359, -2.43616)
-light_energy = 6.867
-light_indirect_energy = 4.886
-
-[node name="SpotLight3D" type="SpotLight3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -0.00614354, 0.999981, 0, -0.999981, -0.00614354, -0.782057, 3.51717, 0.98641)
-light_energy = 6.867
-light_indirect_energy = 4.886
 
 [node name="yourBedroom" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.683476, 1.11202, 1.16164)
@@ -92,10 +90,6 @@ size = Vector3(0.865325, 1.3927, 0.151169)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016934, 0.693283, -6.53163)
 flip_faces = true
 size = Vector3(0.865325, 1.3927, 0.151169)
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 0.905502, 0.424342, 0, -0.424342, 0.905502, -0.900129, 1.54089, 4.9503)
-spot_angle = 13.31
 
 [node name="moveableBox" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262406, 0.260086, -0.420328)
@@ -193,6 +187,7 @@ shape = SubResource("BoxShape3D_lfhko")
 
 [node name="Root Scene" parent="." instance=ExtResource("4_7s2ml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.395595, -0.14765, 0.0172568)
+visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -0.735245, 1.15988, 0.0922659)
@@ -213,9 +208,66 @@ shape = SubResource("ConcavePolygonShape3D_v7elw")
 
 [node name="openableDoor" parent="." instance=ExtResource("8_2m8op")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00336713, 0.208454, 1.31291)
+visible = false
+
+[node name="shelf012" parent="." instance=ExtResource("10_63o45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.988248, -0.0199431, 1.09007)
+
+[node name="shelf01" parent="shelf012" index="0"]
+surface_material_override/0 = ExtResource("11_bi7lq")
+
+[node name="shelf022" parent="." instance=ExtResource("12_pauwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48184, 0.00732414, 0.0316228)
+
+[node name="shelf02" parent="shelf022" index="0"]
+surface_material_override/0 = ExtResource("11_bi7lq")
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.031498, 0.999504, 0, -0.999504, 0.031498, 0, 3.89359, -2.43616)
+light_energy = 6.867
+light_indirect_energy = 4.886
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00614354, 0.999981, 0, -0.999981, -0.00614354, -0.782057, 2.15704, 0.254018)
+light_energy = 6.867
+light_indirect_energy = 4.886
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.905502, 0.424342, 0, -0.424342, 0.905502, -0.900129, 1.54089, 4.9503)
+spot_angle = 13.31
+
+[node name="drawers2" parent="." instance=ExtResource("13_g6gi2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.993392, -0.0158636, 0.225904)
+
+[node name="drawers" parent="drawers2" index="0"]
+surface_material_override/0 = ExtResource("11_bi7lq")
+
+[node name="tv01" parent="." instance=ExtResource("14_dqrqy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767328, 0.474888, 2.10558)
+
+[node name="tvconsole2" parent="." instance=ExtResource("15_jbvec")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.827152, -0.0144679, 2.10558)
+
+[node name="ceilingFan2" parent="." instance=ExtResource("16_d0yk6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.657481, 1.94287, 0.258321)
+
+[node name="Skeleton3D" parent="ceilingFan2/ceilingFan_rig" index="0"]
+bones/0/rotation = Quaternion(7.01954e-08, -1, 1.86007e-08, 9.46022e-08)
+bones/1/rotation = Quaternion(0.326048, 0.62745, -0.62745, 0.326047)
+bones/2/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+
+[node name="ceilingFan" parent="ceilingFan2/ceilingFan_rig/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("11_bi7lq")
+
+[node name="AnimationPlayer" parent="ceilingFan2" index="1"]
+autoplay = "ArmatureAction"
 
 [connection signal="start_carrying_object" from="player" to="openableDoor" method="_on_player_carrying_object"]
 [connection signal="stop_carrying_object" from="player" to="openableDoor" method="_on_player_not_carrying_object"]
 
 [editable path="player"]
 [editable path="StaticBody3D/Root Scene2"]
+[editable path="shelf012"]
+[editable path="shelf022"]
+[editable path="drawers2"]
+[editable path="ceilingFan2"]

@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://inventoryItem.gd" id="4_hpxjq"]
 [ext_resource type="PackedScene" uid="uid://0y2vmkdcfno5" path="res://bedroom/bedroom_02.fbx" id="5_ssw3s"]
 [ext_resource type="Material" uid="uid://owjcyp3sah0q" path="res://bedroom/bedroom_textures/bedroomwalls.tres" id="6_78ejd"]
-[ext_resource type="Material" uid="uid://cu6nvwmlgfvxf" path="res://bedroom/bedroom_textures/90scarpet.tres" id="7_itt0k"]
 [ext_resource type="PackedScene" uid="uid://bchhin4j65b0g" path="res://openable_door.tscn" id="8_2m8op"]
+[ext_resource type="Material" uid="uid://t1rl65magiee" path="res://bedroom/bedroom_textures/90scarpetbotw.tres" id="8_kov7j"]
 [ext_resource type="PackedScene" uid="uid://x6xi0vu2k421" path="res://assets/furniture/objects/shelf01.glb" id="10_63o45"]
 [ext_resource type="Material" uid="uid://be1qiwvxq6b5c" path="res://assets/furniture/textures/wood01/wood01.tres" id="11_bi7lq"]
 [ext_resource type="PackedScene" uid="uid://eswk7oolmu4k" path="res://assets/furniture/objects/shelf02.glb" id="12_pauwt"]
@@ -200,7 +200,7 @@ transform = Transform3D(0.01, 0, 0, 0, -1.19209e-09, -0.01, 0, 0.01, -1.19209e-0
 [node name="room" parent="StaticBody3D/Root Scene2/RootNode" index="0"]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -1.0844, 1.30995, 0.0982576)
 surface_material_override/0 = ExtResource("6_78ejd")
-surface_material_override/1 = ExtResource("7_itt0k")
+surface_material_override/1 = ExtResource("8_kov7j")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.31323e-10, 4.65661e-10, 0)

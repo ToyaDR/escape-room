@@ -1,11 +1,90 @@
-[gd_scene load_steps=3 format=3 uid="uid://fgynhpso0jgl"]
+[gd_scene load_steps=10 format=3 uid="uid://fgynhpso0jgl"]
 
 [ext_resource type="Material" uid="uid://be1qiwvxq6b5c" path="res://assets/furniture/textures/wood01/wood01.tres" id="1_jrfkv"]
+[ext_resource type="Material" uid="uid://t1rl65magiee" path="res://bedroom/bedroom_textures/90scarpetbotw.tres" id="2_32c47"]
+[ext_resource type="Texture2D" uid="uid://ds0vc8gl6utpt" path="res://assets/furniture/textures/wood01/wood01_mat_normal.png" id="2_exfdo"]
+[ext_resource type="Shader" path="res://assets/shaders/botwshader_triplanar2.gdshader" id="3_3ap7s"]
+[ext_resource type="Texture2D" uid="uid://cj7qrl1lmy7so" path="res://assets/furniture/textures/wood01/wood01_mat_baseColor.png" id="3_nuocs"]
+[ext_resource type="Texture2D" uid="uid://di6dhmn5d3to4" path="res://bedroom/bedroom_textures/uvChecker.png" id="4_5542a"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_0mht6"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gg3m"]
+render_priority = 0
+shader = ExtResource("3_3ap7s")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 1.0
+shader_parameter/metallic = 0.0
+shader_parameter/shadow_size = -0.25
+shader_parameter/shadow_blend = 0.026
+shader_parameter/shadow_extra_intensity = 0.0
+shader_parameter/shadow_color = Color(0.431373, 0.176471, 0.8, 1)
+shader_parameter/light_tint = Color(1, 1, 1, 1)
+shader_parameter/rimlight_size = 0.436
+shader_parameter/rimlight_blend = 0.305
+shader_parameter/rimlight_color = Color(1, 1, 1, 1)
+shader_parameter/normal_bias = Vector3(0, 0, 0)
+shader_parameter/light_bias = Vector3(0, 0, 0)
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_nuocs")
+shader_parameter/normal_map = ExtResource("2_exfdo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7iln"]
+render_priority = 0
+shader = ExtResource("3_3ap7s")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = null
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = 0.0
+shader_parameter/shadow_size = -0.755
+shader_parameter/shadow_blend = 0.001
+shader_parameter/shadow_extra_intensity = 0.0
+shader_parameter/shadow_color = null
+shader_parameter/light_tint = Color(1, 1, 1, 1)
+shader_parameter/rimlight_size = 0.921
+shader_parameter/rimlight_blend = 0.01
+shader_parameter/rimlight_color = null
+shader_parameter/normal_bias = Vector3(0, 0, 0)
+shader_parameter/light_bias = Vector3(0, 0, 0)
+shader_parameter/uv1_blend_sharpness = 0.885
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/texture_albedo = ExtResource("4_5542a")
+
 [node name="Node3D" type="Node3D"]
 
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0734838, -0.215986, -4.26273)
+mesh = SubResource("SphereMesh_0mht6")
+skeleton = NodePath("../MeshInstance3D2")
+surface_material_override/0 = SubResource("ShaderMaterial_0gg3m")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.50867)
+mesh = SubResource("SphereMesh_0mht6")
+skeleton = NodePath("../MeshInstance3D2")
+surface_material_override/0 = SubResource("ShaderMaterial_r7iln")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.904787)
 mesh = SubResource("SphereMesh_0mht6")
 surface_material_override/0 = ExtResource("1_jrfkv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.24085)
+mesh = SubResource("SphereMesh_0mht6")
+surface_material_override/0 = ExtResource("2_32c47")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.262964, 0.948552, 0.176352, -0.839658, -0.315028, 0.442416, 0.47521, -0.0317356, 0.8793, -0.705985, -0.89454, 0)

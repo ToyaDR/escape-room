@@ -39,34 +39,26 @@ float fresnel(float amount, vec3 normal, vec3 view)
 
 void fragment(){
 	ALBEDO = texture(albedo_texture, UV).rgb * tint.rgb;
-	METALLIC = metallic;
+	//METALLIC = metallic;
 }
 
 void light(){
 	vec3 normal;
 		vec3 normal_from_texture;
 		normal_from_texture = texture(normal_map, UV).rgb;
-		normal = vec3(normal_from_texture.x * NORMAL.x,
-		normal_from_texture.y * NORMAL.y, normal_from_texture.z);
+		normal = vec3(normal_from_texture.x * NORMAL.x,normal_from_texture.y * NORMAL.y, normal_from_texture.z);
 		
 		normal = NORMAL - normal_from_texture;
-	//
-	//if (use_view){
-		//normal -= VIEW * view_bias.rgb * view_multiplier;
-	//}
 	
 	float NdotL = dot(normal + normal_bias, LIGHT + light_bias);
 	
-	float rounded = smoothstep(shadow_size, shadow_blend + shadow_size, NdotL);
-	float one_minus = 1.0 - rounded;
-	vec3 mult1 = LIGHT_COLOR * rounded * light_tint.rgb * ATTENUATION;
-	vec3 mult2 = (one_minus * 1.4 * shadow_color.rgb) - shadow_extra_intensity;
-	vec3 add1 = mult1 + mult2;
+	float hardLightInterpolation = smoothstep(shadow_size, shadow_blend + shadow_size, NdotL);
+    float hardShadowInterpolation = 1.0 - hardLightInterpolation;
+	vec3 lightIntensity = LIGHT_COLOR * hardLightInterpolation * light_tint.rgb * ATTENUATION;
+	vec3 shadowIntensity = (hardShadowInterpolation * 1.4 * shadow_color.rgb);
+ 	vec3 intensity = lightIntensity + shadowIntensity;
 	
-	float add3  = rimlight_blend + rimlight_size;
-	float basic_fresnel = fresnel(1.0, NORMAL, VIEW);
-	float smoothed = smoothstep(rimlight_size, add3, basic_fresnel);
+	float rimLight = smoothstep(rimlight_size, rimlight_blend + rimlight_size, fresnel(1.0, NORMAL, VIEW));
 	
-	vec3 add2 = add1 + smoothed * rimlight_color.rgb;
-	DIFFUSE_LIGHT += ALBEDO * add2;
+	DIFFUSE_LIGHT += ALBEDO * (intensity + rimLight * rimlight_color.rgb);
 }

@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://clqy03lrre1bv"]
+
+[ext_resource type="Shader" path="res://assets/shaders/botwshader.gdshader" id="1_xd5pa"]
+[ext_resource type="Texture2D" uid="uid://ccjdk5m2bmhik" path="res://assets/furniture/textures/pillow01/pillow01_baseColor.png" id="2_iaf5x"]
+[ext_resource type="Texture2D" uid="uid://bay5eu0sfsj2t" path="res://assets/furniture/textures/pillow01/pillow01_normal.png" id="3_mpenf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_xd5pa")
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/shadow_size = 0.045
+shader_parameter/shadow_blend = 0.001
+shader_parameter/shadow_extra_intensity = 0.0
+shader_parameter/shadow_color = Color(0.247059, 0.247059, 0.756863, 1)
+shader_parameter/light_tint = Color(1, 1, 1, 1)
+shader_parameter/rimlight_size = 0.921
+shader_parameter/rimlight_blend = 0.01
+shader_parameter/rimlight_color = Color(1, 1, 1, 1)
+shader_parameter/normal_bias = Vector3(0, 0, 0)
+shader_parameter/light_bias = Vector3(0, 0, 0)
+shader_parameter/albedo_texture = ExtResource("2_iaf5x")
+shader_parameter/normal_map = ExtResource("3_mpenf")

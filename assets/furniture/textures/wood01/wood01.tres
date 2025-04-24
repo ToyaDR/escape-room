@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://be1qiwvxq6b5c"]
+
+[ext_resource type="Shader" path="res://assets/shaders/botwshader.gdshader" id="1_3aydw"]
+[ext_resource type="Texture2D" uid="uid://cj7qrl1lmy7so" path="res://assets/furniture/textures/wood01/wood01_mat_baseColor.png" id="2_uumhl"]
+[ext_resource type="Texture2D" uid="uid://ds0vc8gl6utpt" path="res://assets/furniture/textures/wood01/wood01_mat_normal.png" id="3_c41k8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_3aydw")
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/shadow_size = -0.11
+shader_parameter/shadow_blend = 0.001
+shader_parameter/shadow_extra_intensity = 0.0
+shader_parameter/shadow_color = Color(0.478431, 0.2, 0.823529, 1)
+shader_parameter/light_tint = Color(1, 1, 1, 1)
+shader_parameter/rimlight_size = 0.921
+shader_parameter/rimlight_blend = 0.01
+shader_parameter/rimlight_color = null
+shader_parameter/normal_bias = Vector3(0, 0, 0)
+shader_parameter/light_bias = Vector3(0, 0, 0)
+shader_parameter/albedo_texture = ExtResource("2_uumhl")
+shader_parameter/normal_map = ExtResource("3_c41k8")

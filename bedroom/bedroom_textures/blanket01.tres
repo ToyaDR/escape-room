@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dkv83e4onl8un"]
+
+[ext_resource type="Shader" path="res://assets/shaders/botwshader.gdshader" id="1_t5rr6"]
+[ext_resource type="Texture2D" uid="uid://bjcwkdsgxf7i" path="res://assets/furniture/textures/blanket01v2/DefaultMaterial_Base_color.png" id="2_j4fy2"]
+[ext_resource type="Texture2D" uid="uid://dwrqwiutnj338" path="res://assets/furniture/textures/blanket01v2/DefaultMaterial_Normal_DirectX.png" id="3_f6nxp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_t5rr6")
+shader_parameter/tint = Color(1, 0.909804, 1, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/shadow_size = -0.425
+shader_parameter/shadow_blend = 0.551
+shader_parameter/shadow_extra_intensity = 0.0
+shader_parameter/shadow_color = Color(0.313726, 0.345098, 0.745098, 1)
+shader_parameter/light_tint = Color(1, 1, 1, 1)
+shader_parameter/rimlight_size = 2.046
+shader_parameter/rimlight_blend = 0.01
+shader_parameter/rimlight_color = Color(1, 0.878431, 0.705882, 1)
+shader_parameter/normal_bias = Vector3(0, 0, 0)
+shader_parameter/light_bias = Vector3(0, 0, 0)
+shader_parameter/albedo_texture = ExtResource("2_j4fy2")
+shader_parameter/normal_map = ExtResource("3_f6nxp")

@@ -1,0 +1,123 @@
+[gd_scene load_steps=16 format=3 uid="uid://fgynhpso0jgl"]
+
+[ext_resource type="Material" uid="uid://t1rl65magiee" path="res://bedroom/bedroom_textures/90scarpetbotw.tres" id="2_32c47"]
+[ext_resource type="Texture2D" uid="uid://ds0vc8gl6utpt" path="res://assets/furniture/textures/wood01/wood01_mat_normal.png" id="2_exfdo"]
+[ext_resource type="Shader" path="res://assets/shaders/botwshader_triplanar2.gdshader" id="3_3ap7s"]
+[ext_resource type="Texture2D" uid="uid://cj7qrl1lmy7so" path="res://assets/furniture/textures/wood01/wood01_mat_baseColor.png" id="3_nuocs"]
+[ext_resource type="Texture2D" uid="uid://di6dhmn5d3to4" path="res://bedroom/bedroom_textures/uvChecker.png" id="4_5542a"]
+[ext_resource type="Material" uid="uid://dp8ssaqgrhon" path="res://assets/furniture/textures/wood02/wood02.tres" id="5_o7021"]
+[ext_resource type="Material" uid="uid://b5tk2is8kxkm5" path="res://bedroom/bedroom_textures/bedroomwalls_01.tres" id="7_uaihc"]
+[ext_resource type="Material" uid="uid://d0hxphkuthl0u" path="res://bedroom/bedroom_textures/bedroomwalls_02.tres" id="8_4y6c2"]
+[ext_resource type="Material" uid="uid://dcngwmq3ggssn" path="res://bedroom/bedroom_textures/triplanarexamplemat.tres" id="9_kx5ad"]
+[ext_resource type="Material" uid="uid://jbdfyo03pckc" path="res://bedroom/bedroom_textures/triplanarbotw_tester.tres" id="10_tk3qa"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0mht6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gg3m"]
+render_priority = 0
+shader = ExtResource("3_3ap7s")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 1.0
+shader_parameter/metallic = 0.0
+shader_parameter/shadow_size = -0.25
+shader_parameter/shadow_blend = 0.026
+shader_parameter/shadow_extra_intensity = 0.0
+shader_parameter/shadow_color = Color(0.431373, 0.176471, 0.8, 1)
+shader_parameter/light_tint = Color(1, 1, 1, 1)
+shader_parameter/rimlight_size = 0.436
+shader_parameter/rimlight_blend = 0.305
+shader_parameter/rimlight_color = Color(1, 1, 1, 1)
+shader_parameter/normal_bias = Vector3(0, 0, 0)
+shader_parameter/light_bias = Vector3(0, 0, 0)
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_nuocs")
+shader_parameter/normal_map = ExtResource("2_exfdo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7iln"]
+render_priority = 0
+shader = ExtResource("3_3ap7s")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = null
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = 0.0
+shader_parameter/shadow_size = -0.755
+shader_parameter/shadow_blend = 0.001
+shader_parameter/shadow_extra_intensity = 0.0
+shader_parameter/shadow_color = null
+shader_parameter/light_tint = Color(1, 1, 1, 1)
+shader_parameter/rimlight_size = 0.921
+shader_parameter/rimlight_blend = 0.01
+shader_parameter/rimlight_color = null
+shader_parameter/normal_bias = Vector3(0, 0, 0)
+shader_parameter/light_bias = Vector3(0, 0, 0)
+shader_parameter/uv1_blend_sharpness = 0.885
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/texture_albedo = ExtResource("4_5542a")
+
+[sub_resource type="QuadMesh" id="QuadMesh_8ncjo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_codnu"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0734838, -0.215986, -4.26273)
+mesh = SubResource("SphereMesh_0mht6")
+skeleton = NodePath("../MeshInstance3D2")
+surface_material_override/0 = SubResource("ShaderMaterial_0gg3m")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0747633, 0, -9.44578)
+mesh = SubResource("SphereMesh_0mht6")
+skeleton = NodePath("../MeshInstance3D2")
+surface_material_override/0 = SubResource("ShaderMaterial_r7iln")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.904787)
+mesh = SubResource("SphereMesh_0mht6")
+surface_material_override/0 = ExtResource("5_o7021")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.24085)
+mesh = SubResource("SphereMesh_0mht6")
+surface_material_override/0 = ExtResource("2_32c47")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.254946, 0.913526, 0.316976, -0.875944, -0.357028, 0.324428, 0.409543, -0.194942, 0.89122, -0.705985, -0.89454, 0)
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.4909e-07, 0, 3.41079, 0, 3.41079, 0, -3.41079, 0, -1.4909e-07, -6.26212, 0.793273, 0.344536)
+mesh = SubResource("QuadMesh_8ncjo")
+surface_material_override/0 = ExtResource("7_uaihc")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.4909e-07, 0, 3.41079, 0, 3.41079, 0, -3.41079, 0, -1.4909e-07, -4.60022, 0.85683, 4.54572)
+mesh = SubResource("QuadMesh_8ncjo")
+surface_material_override/0 = ExtResource("8_4y6c2")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.4909e-07, 0, 3.41079, 0, 3.41079, 0, -3.41079, 0, -1.4909e-07, -5.60727, -0.40696, -5.00248)
+mesh = SubResource("QuadMesh_8ncjo")
+surface_material_override/0 = ExtResource("9_kx5ad")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.4909e-07, 0, 3.41079, 0, 3.41079, 0, -3.41079, 0, -1.4909e-07, -5.60727, 0.561261, -9.31406)
+mesh = SubResource("QuadMesh_8ncjo")
+surface_material_override/0 = ExtResource("10_tk3qa")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.38616, 0, 0, 0, 3.38616, 0, 0, 0, 3.38616, 5, 0, 17)
+mesh = SubResource("BoxMesh_codnu")
+surface_material_override/0 = ExtResource("10_tk3qa")

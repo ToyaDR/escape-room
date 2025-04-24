@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://jbdfyo03pckc"]
+
+[ext_resource type="Shader" path="res://assets/shaders/botwshader_worldpos.gdshader" id="1_dyvoo"]
+[ext_resource type="Texture2D" uid="uid://cg3def6f4o8dv" path="res://bedroomblocking/uvChecker.png" id="2_twxnp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dyvoo")
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/shadow_size = 0.045
+shader_parameter/shadow_blend = 0.001
+shader_parameter/shadow_extra_intensity = 0.0
+shader_parameter/shadow_color = Color(0, 0.439216, 0.439216, 1)
+shader_parameter/light_tint = Color(1, 1, 1, 1)
+shader_parameter/rimlight_size = 0.921
+shader_parameter/rimlight_blend = 0.01
+shader_parameter/rimlight_color = Color(1, 1, 1, 1)
+shader_parameter/normal_bias = Vector3(0, 0, 0)
+shader_parameter/light_bias = Vector3(0, 0, 0)
+shader_parameter/albedo_texture = ExtResource("2_twxnp")

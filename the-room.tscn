@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dwe3sp6d7gxwi"]
+[gd_scene load_steps=41 format=3 uid="uid://dwe3sp6d7gxwi"]
 
 [ext_resource type="Material" uid="uid://11dhsxgowmbb" path="res://grayboxing-resources/grayboxDark.tres" id="1_0eoew"]
 [ext_resource type="PackedScene" uid="uid://wdqw3sl6br3p" path="res://player.tscn" id="2_dmf0p"]
@@ -25,6 +25,9 @@
 [ext_resource type="Material" uid="uid://clqy03lrre1bv" path="res://bedroom/bedroom_textures/pillow01.tres" id="21_oifii"]
 [ext_resource type="Material" uid="uid://dwsx6ghcxuvnu" path="res://bedroom/bedroom_textures/pillow02.tres" id="22_yp5sp"]
 [ext_resource type="Material" uid="uid://btt1hddegyiyn" path="res://bedroom/bedroom_textures/bunkbed.tres" id="23_yn5bh"]
+[ext_resource type="PackedScene" uid="uid://c0058ju81pfdh" path="res://assets/hoarding-assets/hoarding-scenes/box_01.tscn" id="26_rpqmq"]
+[ext_resource type="PackedScene" uid="uid://bebkpklu65e34" path="res://assets/hoarding-assets/hoarding-scenes/box_02.tscn" id="27_n1kfm"]
+[ext_resource type="PackedScene" uid="uid://bb87ydvyihovm" path="res://assets/hoarding-assets/hoarding-scenes/box_03.tscn" id="28_x8yvb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yu2vd"]
 
@@ -54,6 +57,9 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_v7elw"]
 data = PackedVector3Array(0.02, 0.01, 0.0106, -0.02, 0.01, 0.0106, -0.02, -0.0325, 0.0106, -0.02, -0.0325, 0.0106, 0.02, -0.0325, 0.0106, 0.02, 0.01, 0.0106, -0.02, -0.0325, 0.0106, 0.02, -0.0325, -0.0117, 0.02, -0.0325, 0.0106, -0.02, -0.0325, 0.0106, -0.02, -0.0325, -0.0117, 0.02, -0.0325, -0.0117, 0.02, -0.0325, 0.0106, 0.02, 0.01, -0.0117, 0.02, 0.01, 0.0106, 0.02, -0.0325, 0.0106, 0.02, -0.0325, -0.0117, 0.02, 0.01, -0.0117, 0.02, 0.01, 0.0106, -0.02, 0.01, -0.0117, -0.02, 0.01, 0.0106, 0.02, 0.01, 0.0106, 0.02, 0.01, -0.0117, -0.02, 0.01, -0.0117, -0.02, 0.01, 0.0106, -0.02, -0.0325, -0.0117, -0.02, -0.0325, 0.0106, -0.02, 0.01, 0.0106, -0.02, 0.01, -0.0117, -0.02, -0.0325, -0.0117, -0.02, 0.01, -0.0117, 0.02, -0.0325, -0.0117, -0.02, -0.0325, -0.0117, 0.02, 0.01, -0.0117, 0.02, -0.0325, -0.0117, -0.02, 0.01, -0.0117)
 backface_collision = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j63go"]
+size = Vector3(0.732666, 1.43738, 1.41193)
 
 [node name="the-room" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397453, 0.150072, 0.0585377)
@@ -311,8 +317,25 @@ surface_material_override/0 = ExtResource("23_yn5bh")
 [node name="blanket01v2_low" parent="bunkbed03" index="6"]
 surface_material_override/0 = ExtResource("20_84ul6")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="bunkbed03"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bunkbed03/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00427246, 0.726135, 0.0539246)
+shape = SubResource("BoxShape3D_j63go")
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659717, 1.29897, 0.265181)
+
+[node name="box01" parent="." instance=ExtResource("26_rpqmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19642, -0.017137, -0.00416521)
+
+[node name="box02" parent="." instance=ExtResource("27_n1kfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.462334, -0.0163584, -0.19616)
+
+[node name="box03" parent="." instance=ExtResource("28_x8yvb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.217382, -0.0278579, -0.0581314)
 
 [connection signal="start_carrying_object" from="player" to="openableDoor" method="_on_player_carrying_object"]
 [connection signal="stop_carrying_object" from="player" to="openableDoor" method="_on_player_not_carrying_object"]

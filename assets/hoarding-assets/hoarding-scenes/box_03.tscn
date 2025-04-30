@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb87ydvyihovm"]
+
+[ext_resource type="PackedScene" uid="uid://b3580desds4vx" path="res://assets/hoarding-assets/box03.glb" id="1_aa5xv"]
+[ext_resource type="Material" uid="uid://bnq2owheakgkb" path="res://assets/hoarding-assets/hoarding-scenes/boxesLight.tres" id="2_i7ii8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hsyhp"]
+size = Vector3(0.647949, 0.346802, 0.972717)
+
+[node name="box03" type="Node3D"]
+
+[node name="box032" parent="." instance=ExtResource("1_aa5xv")]
+
+[node name="box03" parent="box032" index="0"]
+surface_material_override/0 = ExtResource("2_i7ii8")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="box032"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.324397, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="box032/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000732422, -0.152283, -0.00186157)
+shape = SubResource("BoxShape3D_hsyhp")
+
+[editable path="box032"]

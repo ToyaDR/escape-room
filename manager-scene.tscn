@@ -1,13 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3owwqyx0nra6"]
+[gd_scene format=3 uid="uid://bes0gtyo15oip"]
 
-[ext_resource type="Script" path="res://scene_manager.gd" id="1_oh2p1"]
+[sub_resource type="GDScript" id="GDScript_qltfr"]
+script/source = "extends Node
 
-[node name="manager-scene" type="Node3D"]
-script = ExtResource("1_oh2p1")
+var timer = 0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+func _process(_delta):
+	timer += 1
+	if (timer > 100):
+		get_tree().change_scene_to_file('res://the-room.tscn')"
 
-[node name="TextEdit" type="TextEdit" parent="CanvasLayer"]
+[node name="manager-scene" type="Node3D" unique_id=886736278]
+script = SubResource("GDScript_qltfr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1690550764]
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer" unique_id=1515609694]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
